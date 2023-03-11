@@ -7,6 +7,7 @@
 # doc_dir = "data/game-of-thrones"
 doc_dir = "/Users/hrishikesh/Downloads/cheatsheets"
 doc_dir = "/Users/hrishikesh/H/GoogleDrive/OPO/Obsidian/DayJob/Projects/NZ-SaaS"
+doc_dir = "/Volumes/Kaizen/ng-rb/RB-files/attitude/rb-md"
 
 
 import logging
@@ -75,6 +76,21 @@ querying_pipeline = Pipeline()
 querying_pipeline.add_node(component=retriever, name="Retriever", inputs=["Query"])
 querying_pipeline.add_node(component=reader, name="Reader", inputs=["Retriever"])
 
+
+# from haystack.nodes import OpenAIAnswerGenerator
+
+# generator = OpenAIAnswerGenerator(api_key=MY_API_KEY)
+
+
+from haystack.nodes import Seq2SeqGenerator
+
+generator = Seq2SeqGenerator(model_name_or_path="vblagoje/bart_lfqa")
+
+from haystack.pipelines import GenerativeQAPipeline
+
+generative_QA_pipeline = GenerativeQAPipeline(generator=generator, retriever=retriever)
+
+
 from pprint import pprint
 
 
@@ -85,6 +101,8 @@ from haystack.nodes import BM25Retriever, TransformersSummarizer
 summarizer = TransformersSummarizer(model_name_or_path="sshleifer/distilbart-xsum-12-6", use_gpu=False)
 summarization_pipeline = SearchSummarizationPipeline(retriever=retriever, summarizer=summarizer, return_in_answer_format=True)
 
+
+from haystack.utils import print_documents
 
 
 while True:
@@ -99,25 +117,39 @@ while True:
             "Reader": {"top_k": 5}
         }
     )
+    
     # pprint(prediction)
+
     print('############ PREDICTION #################')
     for idx, answer in enumerate(prediction['answers']):
-        print('############ answer ', idx, ' #################')
+        print('############ extracted-answer ', idx, ' #################')
         print('score: ', answer.score)
         print('answer: ', answer.answer)
         print('context: ', answer.context)
-        print('document content: ', prediction['documents'][idx].content)
 
-    print('############ SUMMARIZATION #################')
-    output = summarization_pipeline.run(
-        query=query,
-        params={
-            "Retriever": {"top_k": 2},
-        }
-    )
-    answers = output["answers"]
-    # pprint(answers)
-    for idx, answer in enumerate(answers):
-        print('############ summary ', idx, ' #################')
-        print('answer: ', answer['answer'])
-        print('context: ', answer['context'])
+    for idx, document in enumerate(prediction['documents']):
+        print('############ document ', idx, ' #################')
+        print('score: ', document.score)
+        print('content: ', document.content)
+
+
+    result = generative_QA_pipeline.run(query=query, params={"Retriever": {"top_k": 5}})
+    for idx, answer in enumerate(result['answers']):
+        print('############ generated-answer ', idx, ' #################')
+        print('answer: ', answer.answer)
+
+    # as per my observation the summarization mostly is the same as the prediction, so commenting it out for now
+
+    # print('############ SUMMARIZATION #################')
+    # output = summarization_pipeline.run(
+    #     query=query,
+    #     params={
+    #         "Retriever": {"top_k": 2},
+    #     }
+    # )
+    # answers = output["answers"]
+    # # pprint(answers)
+    # for idx, answer in enumerate(answers):
+    #     print('############ summary ', idx, ' #################')
+    #     print('answer: ', answer['answer'])
+    #     print('context: ', answer['context'])
