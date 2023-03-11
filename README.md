@@ -4,6 +4,7 @@
 
 - https://www.deepset.ai/blog/how-to-build-a-semantic-search-engine-in-python
 - https://haystack.deepset.ai/tutorials/01_basic_qa_pipeline
+- https://www.deepset.ai/blog/beyond-vanilla-question-answering-start-using-classification
 
 ## Other References:
 

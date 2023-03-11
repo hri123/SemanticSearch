@@ -4,8 +4,9 @@
 
 
 
-doc_dir = "data/game-of-thrones"
-# doc_dir = "/Users/hrishikesh/Downloads/cheatsheets"
+# doc_dir = "data/game-of-thrones"
+doc_dir = "/Users/hrishikesh/Downloads/cheatsheets"
+doc_dir = "/Users/hrishikesh/H/GoogleDrive/OPO/Obsidian/DayJob/Projects/NZ-SaaS"
 
 
 import logging
@@ -24,6 +25,19 @@ from haystack.nodes import PreProcessor
 
 all_docs = convert_files_to_docs(dir_path=doc_dir)
 
+preprocessor = PreProcessor(
+    clean_empty_lines=True,
+    clean_whitespace=True,
+    clean_header_footer=False,
+    split_length=200,
+    split_overlap=20,
+    split_respect_sentence_boundary=True,
+)
+
+docs = preprocessor.process(all_docs)
+document_store.write_documents(docs)
+
+
 from haystack.nodes import MarkdownConverter
 from pathlib import Path
 import os
@@ -37,22 +51,12 @@ for subdir, dirs, files in os.walk(doc_dir):
     for file in files:
         if file.endswith((".md")):
             md_doc = converter.convert(file_path=Path(os.path.join(subdir, file)), meta=None)
+            proccessed_md_doc = preprocessor.process(md_doc)
+            document_store.write_documents(proccessed_md_doc)
+
             
 
-preprocessor = PreProcessor(
-    clean_empty_lines=True,
-    clean_whitespace=True,
-    clean_header_footer=False,
-    split_length=200,
-    split_overlap=20,
-    split_respect_sentence_boundary=True,
-)
 
-docs = preprocessor.process(all_docs)
-document_store.write_documents(docs)
-
-docs = preprocessor.process(md_doc)
-document_store.write_documents(docs)
 
 
 
@@ -95,8 +99,25 @@ while True:
             "Reader": {"top_k": 5}
         }
     )
-    pprint(prediction)
+    # pprint(prediction)
+    print('############ PREDICTION #################')
+    for idx, answer in enumerate(prediction['answers']):
+        print('############ answer ', idx, ' #################')
+        print('score: ', answer.score)
+        print('answer: ', answer.answer)
+        print('context: ', answer.context)
+        print('document content: ', prediction['documents'][idx].content)
 
-    output = summarization_pipeline.run(query=query, params={"Retriever": {"top_k": 2}})
+    print('############ SUMMARIZATION #################')
+    output = summarization_pipeline.run(
+        query=query,
+        params={
+            "Retriever": {"top_k": 2},
+        }
+    )
     answers = output["answers"]
-    pprint(answers)
+    # pprint(answers)
+    for idx, answer in enumerate(answers):
+        print('############ summary ', idx, ' #################')
+        print('answer: ', answer['answer'])
+        print('context: ', answer['context'])
