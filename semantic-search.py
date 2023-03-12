@@ -133,10 +133,12 @@ while True:
         print('content: ', document.content)
 
 
-    result = generative_QA_pipeline.run(query=query, params={"Retriever": {"top_k": 5}})
-    for idx, answer in enumerate(result['answers']):
-        print('############ generated-answer ', idx, ' #################')
-        print('answer: ', answer.answer)
+    # as per my observation the generated answer is not printing "good" answers as per me, so commenting it out for now
+
+    # result = generative_QA_pipeline.run(query=query, params={"Retriever": {"top_k": 5}})
+    # for idx, answer in enumerate(result['answers']):
+    #     print('############ generated-answer ', idx, ' #################')
+    #     print('answer: ', answer.answer)
 
     # as per my observation the summarization mostly is the same as the prediction, so commenting it out for now
 
