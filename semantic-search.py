@@ -30,7 +30,7 @@ preprocessor = PreProcessor(
     clean_empty_lines=True,
     clean_whitespace=True,
     clean_header_footer=False,
-    split_length=1000, # 1000 seems to give better score, 2000 is very slow, 500 seems to give better answers than 200
+    split_length=500, # 1000 seems to give better score but slow, 500 seems to give better answers than 200
     split_overlap=20,
     split_respect_sentence_boundary=True,
 )
@@ -51,7 +51,7 @@ converter = MarkdownConverter(
 for subdir, dirs, files in os.walk(doc_dir):
     for file in files:
         if file.endswith((".md")):
-            md_doc = converter.convert(file_path=Path(os.path.join(subdir, file)), meta=None)
+            md_doc = converter.convert(file_path=Path(os.path.join(subdir, file)), meta={'name': file})
             proccessed_md_doc = preprocessor.process(md_doc)
             document_store.write_documents(proccessed_md_doc)
 
@@ -126,11 +126,13 @@ while True:
         print('score: ', answer.score)
         print('answer: ', answer.answer)
         print('context: ', answer.context)
+        print('meta: ', answer.meta)
 
     for idx, document in enumerate(prediction['documents']):
         print('############ document ', idx, ' #################')
         print('score: ', document.score)
         print('content: ', document.content)
+        print('meta: ', document.meta)
 
 
     # as per my observation the generated answer is not printing "good" answers as per me, so commenting it out for now
