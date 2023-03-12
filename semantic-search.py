@@ -30,7 +30,7 @@ preprocessor = PreProcessor(
     clean_empty_lines=True,
     clean_whitespace=True,
     clean_header_footer=False,
-    split_length=200,
+    split_length=1000, # 1000 seems to give better score, 2000 is very slow, 500 seems to give better answers than 200
     split_overlap=20,
     split_respect_sentence_boundary=True,
 )
