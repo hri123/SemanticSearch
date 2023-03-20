@@ -54,3 +54,26 @@ jupyter notebook
 ```
 
 
+# TODO
+
+## Task
+
+### Description
+
+- [ ] Write code to split files into different granularity levels
+  - [ ] sentences
+  - [ ] paragraphs
+  - [ ] sections (multiple paragraphs)
+- [ ] Associate each of the split parts with
+  - [ ] tags / indexes / keywords
+- [ ] Now come up with the ability to search each split part that matches the search pattern with scores
+  - [ ] regex matches
+  - [ ] semantic matches
+
+### Implementation
+
+- spaCy
+- NLP
+- Sentence similarity
+- cosine similarity
+- etc
