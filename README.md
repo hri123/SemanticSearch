@@ -72,6 +72,7 @@ jupyter notebook
 
 ### Implementation
 
+- check bookmarks
 - spaCy
 - NLP
 - Sentence similarity
