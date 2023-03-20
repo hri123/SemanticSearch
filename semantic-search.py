@@ -7,7 +7,7 @@
 # doc_dir = "data/game-of-thrones"
 doc_dir = "/Users/hrishikesh/Downloads/cheatsheets"
 doc_dir = "/Users/hrishikesh/H/GoogleDrive/OPO/Obsidian/DayJob/Projects/NZ-SaaS"
-doc_dir = "/Volumes/Kaizen/ng-rb/RB-files/attitude/rb-md"
+# doc_dir = "/Volumes/Kaizen/ng-rb/RB-files/attitude/rb-md"
 
 
 import logging
