@@ -45,8 +45,38 @@ tfidf_vectors = vectorizer.fit_transform(processed_sentences)
 cosine_similarities = cosine_similarity(tfidf_vectors)
 
 # Find duplicate sentences based on cosine similarity threshold
-duplicate_threshold = 0.5
+duplicate_threshold = 0.3
 for i in range(len(sentences)):
     for j in range(i+1, len(sentences)):
-        # if cosine_similarities[i][j] >= duplicate_threshold:
+        if cosine_similarities[i][j] >= duplicate_threshold:
             print(f"Sentence {i+1} ({sentences[i]}) is a duplicate of sentence {j+1} ({sentences[j]}) with score {cosine_similarities[i][j]}")
+
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
+def get_tf_idf_query_similarity(documents, query):
+    docTFIDF = TfidfVectorizer(stop_words="english").fit_transform(documents)
+    queryTFIDF = TfidfVectorizer(stop_words="english").fit(documents)
+    queryTFIDF = queryTFIDF.transform([query])
+
+    cosineSimilarities = cosine_similarity(queryTFIDF, docTFIDF)
+    return cosineSimilarities
+
+print(get_tf_idf_query_similarity(sentences, 'The cat sat on the mat'))
+
+
+# https://spacy.io/models
+# pip install spacy
+# python -m spacy download en_core_web_lg
+
+import spacy
+nlp = spacy.load('en_core_web_lg')
+
+query = 'The cat sat on the mat'
+query = 'Obama speaks to the media in Illinois'
+
+query_processed = nlp(query)
+
+for i in range(len(sentences)):
+    sentence_processed = nlp(sentences[i])
+    print(query_processed.similarity(sentence_processed))
