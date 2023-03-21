@@ -9,6 +9,7 @@ model = SentenceTransformer('paraphrase-mpnet-base-v2')
 query = 'Obama speaks to the media in Illinois'
 # query = 'The cat sat on the mat'
 query = 'IBM has employed me since long time'
+query = 'Modi is in Bangalore'
 
 passage = ['The cat sat on the mat', 
             'Obama speaks to the media in Illinois', 
@@ -24,7 +25,7 @@ passage_embedding = model.encode(passage)
 cos_sim = util.cos_sim(query_embedding, passage_embedding)
 
 for idx, sentence in enumerate(passage):
-    if cos_sim[0][idx] > 0.4:
+    if cos_sim[0][idx] > -10.4:
         print("Similarity: ", cos_sim[0][idx], ' ', sentence)
 
 

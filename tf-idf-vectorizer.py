@@ -64,19 +64,3 @@ def get_tf_idf_query_similarity(documents, query):
 
 print(get_tf_idf_query_similarity(sentences, 'The cat sat on the mat'))
 
-# TODO: https://course.spacy.io/en/
-# https://spacy.io/models
-# pip install spacy
-# python -m spacy download en_core_web_lg
-
-import spacy
-nlp = spacy.load('en_core_web_lg')
-
-query = 'The cat sat on the mat'
-query = 'Obama speaks to the media in Illinois'
-
-query_processed = nlp(query)
-
-for i in range(len(sentences)):
-    sentence_processed = nlp(sentences[i])
-    print(query_processed.similarity(sentence_processed))
