@@ -40,3 +40,5 @@ for i in range(len(sentences)):
     print("Similarity: ", query_processed.similarity(sentence_processed), ' ', sentences[i])
     print('-' * 20)
 
+
+# TODO: https://github.com/gandersen101/spaczz
