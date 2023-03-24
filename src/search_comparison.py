@@ -20,8 +20,11 @@ def main():
 
     from sentence_transformer import printTestResults
     query = 'IBM has employed me since long time'
-    sentences = g.fixed_sentences
-    # printTestResults(query, sentences)
+    # printTestResults(query, g.fixed_sentences)
+
+    from spacy_search import printSpacyResults
+    query = "cluster access"
+    printSpacyResults(query, sentences)
 
 
 if __name__ == "__main__":
