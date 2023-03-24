@@ -8,7 +8,16 @@ def main():
     sentences = getSpacySentsFromFile(filename)
 
 
-    print(sentences)
+    query = 'The President greets the press in Chicago'
+    query = "clustr accss"
+
+    from fuzzy_search import printFuzz
+    from rapidfuzz import process, fuzz
+    # printFuzz(fuzz, process, query, sentences)
+
+    from regex_search import printRegexImplementation3
+    # printRegexImplementation3(query, sentences)
+
 
 if __name__ == "__main__":
     main()
