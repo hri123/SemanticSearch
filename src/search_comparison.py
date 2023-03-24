@@ -18,6 +18,11 @@ def main():
     from regex_search import printRegexImplementation3
     # printRegexImplementation3(query, sentences)
 
+    from sentence_transformer import printTestResults
+    query = 'IBM has employed me since long time'
+    sentences = g.fixed_sentences
+    # printTestResults(query, sentences)
+
 
 if __name__ == "__main__":
     main()

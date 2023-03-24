@@ -11,4 +11,5 @@ def init():
              'The dog sat on the mat', 
              'The cat in the hat sat on the mat', 
              'The cat sat on the rug',
-             'The mat was where the cat sat']
+             'The mat was where the cat sat',
+             'I am working at International Business Machines since 20 years']
