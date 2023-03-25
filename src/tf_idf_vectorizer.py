@@ -51,8 +51,5 @@ def get_tf_idf_query_similarity(sentences, query):
 
     cosineSimilarities = cosine_similarity(queryTFIDF, docTFIDF)
 
-    for i in range(len(sentences)):
-        print("Score: ", cosineSimilarities[0][i], "for sentence: ", sentences[i])
-
-
-
+    from utils import printTopResults
+    printTopResults(cosineSimilarities[0], sentences)

@@ -1,3 +1,5 @@
+import pandas as pd
+
 import global_variables as g
 
 def getFileAsText(filename):
@@ -22,3 +24,10 @@ def getLinesFromFile(filename):
         while (line := file.readline()):
             sentences.append(line.rstrip())
     return sentences
+
+def printTopResults(scores, sentences, topN = 10):
+    data = {'Score': scores,
+        'Sentence': sentences}
+    df = pd.DataFrame(data)
+    df.sort_values('Score', ascending=False, inplace=True)
+    print(df.head(topN))
