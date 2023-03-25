@@ -15,3 +15,10 @@ def getSpacySentsFromFile(filename):
     text = getFileAsText(filename)
     sentences = getSpacySents(text)
     return sentences
+
+def getLinesFromFile(filename):
+    sentences = []
+    with open(filename, 'r', encoding='UTF-8') as file:
+        while (line := file.readline()):
+            sentences.append(line.rstrip())
+    return sentences

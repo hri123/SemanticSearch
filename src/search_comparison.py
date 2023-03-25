@@ -1,11 +1,12 @@
 import global_variables as g
 g.init() 
 
-from utils import getSpacySentsFromFile
+from utils import getSpacySentsFromFile, getLinesFromFile
 
 def main():
     filename = '/Users/hrishikesh/H/GoogleDrive/OPO/Obsidian/DayJob/Projects/Lakehouse/Lakehouse-Root.md'
-    sentences = getSpacySentsFromFile(filename)
+    # sentences = getSpacySentsFromFile(filename)
+    sentences = getLinesFromFile(filename)
 
 
     query = 'The President greets the press in Chicago'
