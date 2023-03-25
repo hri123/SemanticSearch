@@ -32,5 +32,9 @@ def main():
     get_tf_idf_query_similarity(sentences, query)
 
 
+
+# TODO: https://docs.haystack.deepset.ai/docs/answer_generator#example-of-openaianswergenerator-in-a-pipeline
+
+
 if __name__ == "__main__":
     main()
