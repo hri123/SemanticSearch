@@ -16,9 +16,10 @@ def main():
     from rapidfuzz import process, fuzz
     # printFuzz(fuzz, process, query, sentences)
 
-    from regex_search import printRegexImplementation3, printRegexImplementation4
+    from regex_search import printRegexImplementation3, printRegexImplementation4, printRegexImplementation5
     # printRegexImplementation3(query, sentences)
     # printRegexImplementation4()
+    # printRegexImplementation5()
 
     from sentence_transformer import printTestResults
     query = 'IBM has employed me since long time'
