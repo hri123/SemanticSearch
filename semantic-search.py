@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+# TODO: https://www.linkedin.com/feed/update/urn:li:activity:7044207398038708224/
+
 # https://www.deepset.ai/blog/how-to-build-a-semantic-search-engine-in-python -> https://haystack.deepset.ai/tutorials/01_basic_qa_pipeline -> https://github.com/deepset-ai/haystack-tutorials/blob/main/tutorials/01_Basic_QA_Pipeline.ipynb
 
 
