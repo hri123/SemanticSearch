@@ -24,9 +24,10 @@ def main():
     query = 'IBM has employed me since long time'
     # printTestResults(query, g.fixed_sentences)
 
-    from spacy_search import printSpacyResults
+    from spacy_search import printSpacyResults, testSpacySimilarity
     query = "cluster access"
     # printSpacyResults(query, sentences)
+    # testSpacySimilarity()
 
     from tf_idf_vectorizer import printTfIDFTest, get_tf_idf_query_similarity
     # printTfIDFTest(g.fixed_sentences)
