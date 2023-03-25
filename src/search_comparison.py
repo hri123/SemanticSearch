@@ -16,8 +16,9 @@ def main():
     from rapidfuzz import process, fuzz
     # printFuzz(fuzz, process, query, sentences)
 
-    from regex_search import printRegexImplementation3
+    from regex_search import printRegexImplementation3, printRegexImplementation4
     # printRegexImplementation3(query, sentences)
+    # printRegexImplementation4()
 
     from sentence_transformer import printTestResults
     query = 'IBM has employed me since long time'
@@ -29,8 +30,8 @@ def main():
 
     from tf_idf_vectorizer import printTfIDFTest, get_tf_idf_query_similarity
     # printTfIDFTest(g.fixed_sentences)
-    query = "cluster access"
-    get_tf_idf_query_similarity(sentences, query)
+    # query = "cluster access"
+    # get_tf_idf_query_similarity(sentences, query)
 
 
 

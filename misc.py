@@ -145,39 +145,3 @@ print(df1.to_string())
 print()
 print(f'text3: {text3}')
 print(f'text1: {text1}')
-
-
-
-from difflib import SequenceMatcher
-
-text1 = "Patient has checked in for abdominal pain which started 3 days ago. Patient was prescribed idx 20 mg every 4 hours."
-text2 = "The time of discomfort was 3 days ago."
-text3 = "John was given a prescription of idx, 20mg to be given every four hours"
-
-
-def fuzzy_match(t1: str, t2: str, min_len: int = 3, max_len: int = 10, ratio_to_get: int = 0.6):
-    t1 = t1.replace(".", "").replace(",", "")
-    t2 = t2.replace(".", "").replace(",", "")
-
-    result = set()
-    t2_splitted = t2.split(" ")
-    t1_splitted = t1.split(" ")
-    for count in range(min_len, max_len, 1):
-        for pos_2 in range(len(t2_splitted) - count + 1):
-            substr_2 = " ".join(t2_splitted[pos_2: pos_2 + count])
-            for pos_1 in range(len(t1_splitted) - count + 1):
-                substr_1 = " ".join(t1_splitted[pos_1: pos_1 + count])
-                ratio = SequenceMatcher(None, substr_1, substr_2).ratio()
-                if ratio >= ratio_to_get:
-                    result.add(substr_1)
-
-    return result
-
-
-if __name__ == '__main__':
-    print(fuzzy_match(text1, text2))
-    print(fuzzy_match(text2, text1))
-    print(fuzzy_match(text1, text3))
-    print(fuzzy_match(text3, text1))
-    print(fuzzy_match(text2, text3))
-    print(fuzzy_match(text3, text2))
