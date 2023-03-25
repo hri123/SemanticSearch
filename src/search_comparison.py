@@ -24,7 +24,12 @@ def main():
 
     from spacy_search import printSpacyResults
     query = "cluster access"
-    printSpacyResults(query, sentences)
+    # printSpacyResults(query, sentences)
+
+    from tf_idf_vectorizer import printTfIDFTest, get_tf_idf_query_similarity
+    # printTfIDFTest(g.fixed_sentences)
+    query = "cluster access"
+    get_tf_idf_query_similarity(sentences, query)
 
 
 if __name__ == "__main__":
