@@ -17,6 +17,7 @@ import logging
 logging.basicConfig(format="%(levelname)s - %(name)s -  %(message)s", level=logging.WARNING)
 logging.getLogger("haystack").setLevel(logging.INFO)
 
+
 from haystack.document_stores import InMemoryDocumentStore
 
 document_store = InMemoryDocumentStore(use_bm25=True)
@@ -57,11 +58,6 @@ for subdir, dirs, files in os.walk(doc_dir):
             proccessed_md_doc = preprocessor.process(md_doc)
             document_store.write_documents(proccessed_md_doc)
 
-            
-
-
-
-
 
 from haystack.nodes import BM25Retriever
 
@@ -71,6 +67,7 @@ retriever = BM25Retriever(document_store=document_store)
 from haystack.nodes import FARMReader
 
 reader = FARMReader(model_name_or_path="deepset/roberta-base-squad2", use_gpu=True)
+
 
 from haystack import Pipeline
 
@@ -88,6 +85,7 @@ from haystack.nodes import Seq2SeqGenerator
 
 generator = Seq2SeqGenerator(model_name_or_path="vblagoje/bart_lfqa")
 
+
 from haystack.pipelines import GenerativeQAPipeline
 
 generative_QA_pipeline = GenerativeQAPipeline(generator=generator, retriever=retriever)
@@ -98,7 +96,6 @@ from pprint import pprint
 
 from haystack.pipelines import SearchSummarizationPipeline
 from haystack.nodes import BM25Retriever, TransformersSummarizer
-
 
 summarizer = TransformersSummarizer(model_name_or_path="sshleifer/distilbart-xsum-12-6", use_gpu=False)
 summarization_pipeline = SearchSummarizationPipeline(retriever=retriever, summarizer=summarizer, return_in_answer_format=True)
@@ -143,6 +140,7 @@ while True:
     # for idx, answer in enumerate(result['answers']):
     #     print('############ generated-answer ', idx, ' #################')
     #     print('answer: ', answer.answer)
+
 
     # as per my observation the summarization mostly is the same as the prediction, so commenting it out for now
 

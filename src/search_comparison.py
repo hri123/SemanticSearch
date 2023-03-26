@@ -40,5 +40,9 @@ def main():
 # TODO: https://docs.haystack.deepset.ai/docs/answer_generator#example-of-openaianswergenerator-in-a-pipeline
 
 
+# Use Cases:
+# Sub String Search: pass phrase to fuzzy search sentences containing this string
+# Semantic Search: pass sentence to search similar sentences
+
 if __name__ == "__main__":
     main()
