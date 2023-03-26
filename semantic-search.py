@@ -12,62 +12,6 @@ logging.getLogger("haystack").setLevel(logging.INFO)
 
 
 
-# doc_dir = "data/game-of-thrones"
-doc_dir = "/Users/hrishikesh/Downloads/cheatsheets"
-doc_dir = "/Users/hrishikesh/H/GoogleDrive/OPO/Obsidian/DayJob/Projects/NZ-SaaS"
-# doc_dir = "/Volumes/Kaizen/ng-rb/RB-files/attitude/rb-md"
-
-
-
-from haystack.document_stores import InMemoryDocumentStore
-
-document_store = InMemoryDocumentStore(use_bm25=True)
-
-
-# https://haystack.deepset.ai/tutorials/08_preprocessing
-from haystack.utils import convert_files_to_docs
-# from haystack.utils import print_documents
-# from pprint import pprint
-from haystack.nodes import PreProcessor
-
-all_docs = convert_files_to_docs(dir_path=doc_dir)
-
-preprocessor = PreProcessor(
-    clean_empty_lines=True,
-    clean_whitespace=True,
-    clean_header_footer=False,
-    split_length=100, # 1000 seems to give better score but slow, 500 seems to give better answers than 200
-    split_overlap=20,
-    split_respect_sentence_boundary=False,
-)
-
-docs = preprocessor.process(all_docs)
-document_store.write_documents(docs)
-
-
-from haystack.nodes import TextConverter
-from pathlib import Path
-import os
-
-# MarkdownConverter converts only the displayed contents and removes the hidden contents - e.g. the link url is removed from [Link text Here](https://link-url-here.org), so using TextConverter
-converterT = TextConverter(
-    remove_numeric_tables=True,
-    valid_languages=["en"]
-)
-
-for subdir, dirs, files in os.walk(doc_dir):
-    for file in files:
-        if file.endswith((".md")):
-            md_doc = converterT.convert(file_path=Path(os.path.join(subdir, file)), meta={'name': file})
-            proccessed_md_doc = preprocessor.process(md_doc)
-            document_store.write_documents(proccessed_md_doc)
-
-
-from haystack.nodes import BM25Retriever
-
-retriever = BM25Retriever(document_store=document_store)
-
-
 
 def testPrediction(retriever):
 
@@ -175,6 +119,75 @@ def testSummarization(retriever):
             print('context: ', answer['context'])
 
 
-testPrediction(retriever)
-# testGeneration(retriever)
-# testSummarization(retriever)
+def fillDocumentStore(document_store, doc_dir):
+
+    # https://haystack.deepset.ai/tutorials/08_preprocessing
+    # from haystack.utils import print_documents
+    # from pprint import pprint
+    
+    # from haystack.utils import convert_files_to_docs
+    # all_docs = convert_files_to_docs(dir_path=doc_dir)
+    # docs = preprocessor.process(all_docs)
+    # document_store.write_documents(docs)
+
+    from haystack.nodes import PreProcessor
+
+    preprocessor = PreProcessor(
+        clean_empty_lines=True,
+        clean_whitespace=True,
+        clean_header_footer=False,
+        split_by="word", # 'word' / 'sentence' / 'passage'
+        split_length=100, # 1000 seems to give better score but slow, 500 seems to give better answers than 200
+        split_overlap=20,
+        split_respect_sentence_boundary=False,
+    )
+
+
+    from haystack.nodes import TextConverter
+    from pathlib import Path
+    import os
+
+    # MarkdownConverter converts only the displayed contents and removes the hidden contents - e.g. the link url is removed from [Link text Here](https://link-url-here.org), so using TextConverter
+    converterT = TextConverter(
+        remove_numeric_tables=True,
+        valid_languages=["en"]
+    )
+
+    for subdir, dirs, files in os.walk(doc_dir):
+        for file in files:
+            if file.endswith((".md")):
+                md_doc = converterT.convert(file_path=Path(os.path.join(subdir, file)), meta={'name': file})
+                proccessed_md_doc = preprocessor.process(md_doc)
+                document_store.write_documents(proccessed_md_doc)
+
+
+
+def main():
+
+
+    from haystack.document_stores import InMemoryDocumentStore
+
+    document_store = InMemoryDocumentStore(use_bm25=True)
+
+
+    # doc_dir = "data/game-of-thrones"
+    doc_dir = "/Users/hrishikesh/Downloads/cheatsheets"
+    doc_dir = "/Users/hrishikesh/H/GoogleDrive/OPO/Obsidian/DayJob/Projects/NZ-SaaS"
+    # doc_dir = "/Volumes/Kaizen/ng-rb/RB-files/attitude/rb-md"
+
+    
+    fillDocumentStore(document_store, doc_dir)
+    
+    
+    from haystack.nodes import BM25Retriever
+
+    retriever = BM25Retriever(document_store=document_store)
+
+
+    testPrediction(retriever)
+    # testGeneration(retriever)
+    # testSummarization(retriever)
+
+
+if __name__ == "__main__":
+    main()
