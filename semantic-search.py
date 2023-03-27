@@ -184,6 +184,18 @@ def main():
 
     retriever = BM25Retriever(document_store=document_store)
 
+    # TODO: Can use pipeline instead too
+    # from haystack.pipelines import Pipeline
+    # from haystack.nodes import PreProcessor, TextConverter, Retriever
+    # from haystack.nodes import DeepsetCloudDocumentStore
+
+    # pipeline = Pipeline()
+    # pipeline.add_node(component=text_converter, name="TextConverter", inputs=["File"])
+    # pipeline.add_node(component=preprocessor, name="PreProcessor", inputs=["TextConverter"])
+    # pipeline.add_node(component=retriever, name="EmbeddingRetriever", inputs=["PreProcessor"])
+    # pipeline.add_node(component=document_store, name="DeepsetCloudDocumentStore", inputs="EmbeddingRetriever")
+
+
 
     testPrediction(retriever)
     # testGeneration(retriever)
