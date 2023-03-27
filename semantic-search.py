@@ -119,7 +119,7 @@ def testSummarization(retriever):
             print('context: ', answer['context'])
 
 
-def fillDocumentStore(document_store, doc_dir):
+def fillDocumentStore(document_store, doc_dir, respect_sentence_boundary=False):
 
     # https://haystack.deepset.ai/tutorials/08_preprocessing
     # from haystack.utils import print_documents
@@ -139,7 +139,7 @@ def fillDocumentStore(document_store, doc_dir):
         split_by="word", # 'word' / 'sentence' / 'passage'
         split_length=100, # 1000 seems to give better score but slow, 500 seems to give better answers than 200
         split_overlap=20,
-        split_respect_sentence_boundary=False,
+        split_respect_sentence_boundary=respect_sentence_boundary,
     )
 
 
@@ -159,6 +159,7 @@ def fillDocumentStore(document_store, doc_dir):
                 md_doc = converterT.convert(file_path=Path(os.path.join(subdir, file)), meta={'name': file})
                 proccessed_md_doc = preprocessor.process(md_doc)
                 document_store.write_documents(proccessed_md_doc)
+            # TODO: add converters for PDF documents, Text documents, etc.
 
 
 
@@ -176,7 +177,7 @@ def main():
     # doc_dir = "/Volumes/Kaizen/ng-rb/RB-files/attitude/rb-md"
 
     
-    fillDocumentStore(document_store, doc_dir)
+    fillDocumentStore(document_store, doc_dir, respect_sentence_boundary=False)
     
     
     from haystack.nodes import BM25Retriever
