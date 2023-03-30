@@ -1,3 +1,26 @@
+# Using Tools and Editors
+
+- using obsidian
+	- find multiple words on a single line but in no particular order - `line:(universe go well examples)`
+	- https://help.obsidian.md/Plugins/Search
+
+- using fzf
+	```
+	brew install fzf
+	brew install ripgrep
+	
+	cd /Volumes/Kaizen/ng-rb/RB-files/attitude/rb-md
+	
+	rg --heading --line-number . | fzf --layout=reverse
+	```
+	- https://github.com/rlivings39/vscode-fzf-quick-open
+	- https://dev.to/iggredible/how-to-search-faster-in-vim-with-fzf-vim-36ko
+	- `vim "$(fzf)"` - Open file after searching
+
+- Silver Search
+	- look ahead search / ag silver search : `^(?=.?wealth)(?=.?health).*$`
+
+
 # SemanticSearch
 
 ## Main Reference
