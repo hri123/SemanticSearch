@@ -19,6 +19,7 @@
 
 - Silver Search
 	- look ahead search / ag silver search : `^(?=.?wealth)(?=.?health).*$`
+	- works in vscode
 
 
 # SemanticSearch
