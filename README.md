@@ -9,9 +9,7 @@
 	brew install fzf
 	brew install ripgrep
 	
-	cd /Volumes/Kaizen/ng-rb/RB-files/attitude/rb-md
-	
-	rg --heading --line-number . | fzf --layout=reverse
+	rg --heading --line-number . /Volumes/Kaizen/ng-rb/RB-files/attitude/rb-md/  | fzf --layout=reverse
 	```
 	- https://github.com/rlivings39/vscode-fzf-quick-open
 	- https://dev.to/iggredible/how-to-search-faster-in-vim-with-fzf-vim-36ko
