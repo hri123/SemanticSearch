@@ -25,7 +25,7 @@ pip install gpt4all
 
 - https://platform.openai.com/usage
 
-# How to runbook
+# How to run
 
 export OPENAI_API_KEY="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 python main.py
