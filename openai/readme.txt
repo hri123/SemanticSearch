@@ -53,3 +53,6 @@ Read:
     - https://stackoverflow.com/a/75192794/512126
     - https://github.com/samwit/langchain-tutorials/blob/main/RAG/YT_Chat_your_PDFs_Langchain_Template_for_creating.ipynb
 
+
+- https://github.com/alejandro-ao/ask-multiple-pdfs
+- https://github.com/alejandro-ao/langchain-ask-pdf
