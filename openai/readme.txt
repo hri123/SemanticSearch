@@ -50,4 +50,6 @@ Read:
 - https://platform.openai.com/docs/guides/prompt-engineering
 - https://platform.openai.com/docs/guides/embeddings/use-cases - Text search using embeddings
     - see if you can use pandas to read plain text file into dataframe
+    - https://stackoverflow.com/a/75192794/512126
+    - https://github.com/samwit/langchain-tutorials/blob/main/RAG/YT_Chat_your_PDFs_Langchain_Template_for_creating.ipynb
 
