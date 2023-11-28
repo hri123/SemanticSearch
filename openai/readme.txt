@@ -35,3 +35,19 @@ python main.py
 - https://platform.openai.com/docs/guides/text-generation
 - https://docs.embedchain.ai/get-started/examples
 - https://github.com/openai/openai-python - code generation
+
+
+# TODO:
+
+Three things that can be done by AI:
+- query - ask a question and answer
+- search - find text as is using semantic search
+- summarize - summarize a section of the text
+- generate / create - TODO
+
+
+Read:
+- https://platform.openai.com/docs/guides/prompt-engineering
+- https://platform.openai.com/docs/guides/embeddings/use-cases - Text search using embeddings
+    - see if you can use pandas to read plain text file into dataframe
+
