@@ -1,3 +1,8 @@
+# Note:
+
+- This is a POC to understand what assistants do
+- NOT working correctly, still in Beta
+
 # Init
 
 virtualenv env
@@ -11,8 +16,5 @@ python assistant.py
 
 # references
 
+https://platform.openai.com/docs/assistants/overview
 
-
-# Note:
-
-NOT working correctly, still in Beta

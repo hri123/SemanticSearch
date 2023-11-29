@@ -1,3 +1,8 @@
+# Note:
+
+- using langchain, a lower level library than embedchain to do the search
+
+
 # Init
 
 virtualenv env
@@ -15,9 +20,4 @@ python main.py
 
 https://github.com/techleadhd/chatgpt-retrieval/blob/main/README.md
 https://python.langchain.com/docs/modules/data_connection/document_loaders/file_directory
-
-# Restrict answers to the data in the folder
-
-https://stackoverflow.com/a/76241713/512126
-
 
