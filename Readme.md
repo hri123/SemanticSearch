@@ -1,62 +1,37 @@
-# Restrict answers to the data in the folder
+# Different ways to search for what you need from knowledge base
 
-https://stackoverflow.com/a/76241713/512126
-
-# TODO:
-
-Three things that can be done by AI:
-- query - ask a question and answer
-- search - find text as is using semantic search
-- summarize - summarize a section of the text
-- generate / create - TODO
+- fuzzy search
+- semantic search without openAI APIs (NLP, spacy, cosine similarity)
+- query / search with openAI APIs
+    - query - ask a question and let it answer the question
+    - search - find text as is using semantic search
+    - summarize - summarize a section of text
+    - generate / create - generate code, essay
 
 
-Read:
-- https://platform.openai.com/docs/guides/prompt-engineering
-- https://platform.openai.com/docs/guides/embeddings/use-cases - Text search using embeddings
-    - see if you can use pandas to read plain text file into dataframe
-    - https://stackoverflow.com/a/75192794/512126
-    - https://github.com/samwit/langchain-tutorials/blob/main/RAG/YT_Chat_your_PDFs_Langchain_Template_for_creating.ipynb
+## My understanding of the best way to search for what you need from knowledge base
 
+- **quick search** - use fuzzy search using rg and fzf
 
-- https://github.com/alejandro-ao/ask-multiple-pdfs
-- https://github.com/alejandro-ao/langchain-ask-pdf
+- when you want to **query something** - go over this in detail - https://betterprogramming.pub/building-a-multi-document-reader-and-chatbot-with-langchain-and-chatgpt-d1864d47e339
+    - using embeddings help send only the relevant chunks as tokens to the openAI API
+        - https://stackoverflow.com/questions/74000154/how-do-i-make-sure-answers-are-from-a-customized-fine-tuning-dataset/75192794#75192794
+        - https://www.youtube.com/watch?v=8kJStTRuMcs
+        - https://community.openai.com/t/answering-lots-of-questions-from-one-large-chunk-of-text-without-paying-tokens-to-input-the-big-text-chunk-for-each-question/323843/8
 
 
 
-- [ ] Write code to split files into different granularity levels
-  - [ ] sentences
-  - [ ] paragraphs
-  - [ ] sections (multiple paragraphs)
-- [ ] Associate each of the split parts with
-  - [ ] tags / indexes / keywords
-- [ ] Now come up with the ability to search each split part that matches the search pattern with scores
-  - [ ] regex matches
-  - [ ] semantic matches
+# references
 
-
-
-
-- check bookmarks
-- spaCy
-- NLP
-- Sentence similarity
-- cosine similarity
-- etc
-
-
-
-# API Usage limits
+## openai API Usage limits
 
 - https://platform.openai.com/usage
 
 
-# Different ways to search for what you need from knowledge base
+## Examples of using openai APIs for semantic search
 
-- fuzzy search
-- semantic search (cosing similarity)
-- query using openAI
-
+- https://github.com/samwit/langchain-tutorials/blob/main/RAG/YT_Chat_your_PDFs_Langchain_Template_for_creating.ipynb
+https://github.com/alejandro-ao/ask-multiple-pdfs - uses streamlit for GUI
 
 # Using Tools and Editors
 
@@ -78,3 +53,14 @@ Read:
 - Silver Search
 	- look ahead search / ag silver search : `^(?=.?wealth)(?=.?health).*$`
 	- works in vscode
+
+# TODO:
+
+## Read:
+
+- https://platform.openai.com/docs/guides/prompt-engineering
+- https://platform.openai.com/docs/guides/embeddings/use-cases - Text search using embeddings
+
+
+
+
