@@ -1,43 +1,7 @@
-# Using Tools and Editors
-
-- using obsidian
-	- find multiple words on a single line but in no particular order - `line:(universe go well examples)`
-	- https://help.obsidian.md/Plugins/Search
-
-- using fzf
-	```
-	brew install fzf
-	brew install ripgrep
-	
-	rg --heading --line-number . /Volumes/Kaizen/ng-rb/RB-files/attitude/rb-md/  | fzf --layout=reverse
-	```
-	- https://github.com/rlivings39/vscode-fzf-quick-open
-	- https://dev.to/iggredible/how-to-search-faster-in-vim-with-fzf-vim-36ko
-	- `vim "$(fzf)"` - Open file after searching
-
-- Silver Search
-	- look ahead search / ag silver search : `^(?=.?wealth)(?=.?health).*$`
-	- works in vscode
+# Note
 
 
-# SemanticSearch
-
-## Main Reference
-
-- https://www.deepset.ai/blog/how-to-build-a-semantic-search-engine-in-python
-- https://haystack.deepset.ai/tutorials/01_basic_qa_pipeline
-- https://www.deepset.ai/blog/beyond-vanilla-question-answering-start-using-classification
-
-## Other References:
-
-- https://github.com/aws-samples/semantic-search-aws-docs
-- https://opensemanticsearch.org/
-- https://twitter.com/nucliaai
-- https://datasciencedojo.com/blog/ai-powered-document-search/
-
-
-## Setup
-
+# Init
 
 ```
 # install if not already installed
@@ -75,28 +39,29 @@ jupyter notebook
 
 ```
 
+# How to run
 
-# TODO
+- check each of the files for specifics
+- check the file search_comparison.py to invoke each of the different ways to search
+- semantic-search.py - one more trial
 
-## Task
 
-### Description
+# references
 
-- [ ] Write code to split files into different granularity levels
-  - [ ] sentences
-  - [ ] paragraphs
-  - [ ] sections (multiple paragraphs)
-- [ ] Associate each of the split parts with
-  - [ ] tags / indexes / keywords
-- [ ] Now come up with the ability to search each split part that matches the search pattern with scores
-  - [ ] regex matches
-  - [ ] semantic matches
+## Main Reference
 
-### Implementation
+- https://www.deepset.ai/blog/how-to-build-a-semantic-search-engine-in-python
+- https://haystack.deepset.ai/tutorials/01_basic_qa_pipeline
+- https://www.deepset.ai/blog/beyond-vanilla-question-answering-start-using-classification
 
-- check bookmarks
-- spaCy
-- NLP
-- Sentence similarity
-- cosine similarity
-- etc
+## Other References:
+
+- https://github.com/aws-samples/semantic-search-aws-docs
+- https://opensemanticsearch.org/
+- https://twitter.com/nucliaai
+- https://datasciencedojo.com/blog/ai-powered-document-search/
+
+
+# troubleshooting
+
+

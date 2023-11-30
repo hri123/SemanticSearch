@@ -23,6 +23,29 @@ Read:
 - https://github.com/alejandro-ao/langchain-ask-pdf
 
 
+
+- [ ] Write code to split files into different granularity levels
+  - [ ] sentences
+  - [ ] paragraphs
+  - [ ] sections (multiple paragraphs)
+- [ ] Associate each of the split parts with
+  - [ ] tags / indexes / keywords
+- [ ] Now come up with the ability to search each split part that matches the search pattern with scores
+  - [ ] regex matches
+  - [ ] semantic matches
+
+
+
+
+- check bookmarks
+- spaCy
+- NLP
+- Sentence similarity
+- cosine similarity
+- etc
+
+
+
 # API Usage limits
 
 - https://platform.openai.com/usage
@@ -33,3 +56,25 @@ Read:
 - fuzzy search
 - semantic search (cosing similarity)
 - query using openAI
+
+
+# Using Tools and Editors
+
+- using obsidian
+	- find multiple words on a single line but in no particular order - `line:(universe go well examples)`
+	- https://help.obsidian.md/Plugins/Search
+
+- using fzf
+	```
+	brew install fzf
+	brew install ripgrep
+	
+	rg --heading --line-number . /Volumes/Kaizen/ng-rb/RB-files/attitude/rb-md/  | fzf --layout=reverse
+	```
+	- https://github.com/rlivings39/vscode-fzf-quick-open
+	- https://dev.to/iggredible/how-to-search-faster-in-vim-with-fzf-vim-36ko
+	- `vim "$(fzf)"` - Open file after searching
+
+- Silver Search
+	- look ahead search / ag silver search : `^(?=.?wealth)(?=.?health).*$`
+	- works in vscode
