@@ -1,5 +1,6 @@
 # Note
 
+- Attempting in this folder to generate answers without using openAI
 
 # Init
 
