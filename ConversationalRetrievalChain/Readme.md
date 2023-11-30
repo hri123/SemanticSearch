@@ -2,6 +2,9 @@
 
 - using langchain, a lower level library than embedchain to do the search
 
+## Restrict answers to the data in the folder
+
+https://stackoverflow.com/a/76241713/512126
 
 # Init
 
